@@ -5,23 +5,26 @@ using UnityEngine;
 public class ExposeAnimatorController : MonoBehaviour
 {
     private Animator _animator;
-    private bool _isExpose;
+    private bool _isExpose = false;
     void Start()
     {
         _animator = GetComponent<Animator>();
     }
 
-    public void TriggerAnimation() {
-        if (_isExpose)
+    public void PlayExpose() { 
+        if (!_isExpose)
         {
             _animator.Play("ExposeDemoKit");
-            _isExpose = false;
         }
-        else
+        _isExpose= true;
+    }
+
+    public void PlayPulling() {
+        if (_isExpose)
         {
             _animator.Play("PullingDemoKit");
-            _isExpose = true;
         }
+        _isExpose = false;
     }
 
 
